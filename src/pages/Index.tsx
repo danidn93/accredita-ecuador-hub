@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import AppointmentForm from "@/components/AppointmentForm";
+import AboutCompany from "@/components/AboutCompany";            // ← nuevo
+import AccreditationBenefits from "@/components/AccreditationBenefits";
 import ContactForm from "@/components/ContactForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
@@ -13,6 +15,8 @@ const Index = () => {
       <Hero />
       <Services />
       <AppointmentForm />
+      <AboutCompany />
+      <AccreditationBenefits />
       <ContactForm />
       <FAQ />
       <Footer />
