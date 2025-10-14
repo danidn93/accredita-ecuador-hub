@@ -1,9 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { CheckCircle } from "lucide-react";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
-    <section className="pt-32 pb-20 px-4 bg-gradient-to-br from-secondary via-background to-background">
+    <section 
+      className="pt-32 pb-20 px-4 bg-gradient-to-br from-secondary via-background to-background relative overflow-hidden"
+      style={{
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.85)), url(${heroBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed'
+      }}
+    >
       <div className="container mx-auto">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground leading-tight">

@@ -25,11 +25,6 @@ const Navbar = () => {
           </a>
         </div>
 
-        <Link to="/admin">
-          <Button variant="outline" size="sm">
-            Admin
-          </Button>
-        </Link>
       </div>
     </nav>
   );

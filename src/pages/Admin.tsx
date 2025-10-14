@@ -1,15 +1,30 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowLeft, Calendar, HelpCircle, Clock } from "lucide-react";
+import { ArrowLeft, Calendar, HelpCircle, Clock, LogOut } from "lucide-react";
 import AvailabilityManager from "@/components/admin/AvailabilityManager";
 import FAQManager from "@/components/admin/FAQManager";
 import AppointmentsList from "@/components/admin/AppointmentsList";
+import { toast } from "sonner";
 
 const Admin = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("availability");
+
+  useEffect(() => {
+    const isAuthenticated = localStorage.getItem("adminAuth");
+    if (!isAuthenticated) {
+      navigate("/admin-login");
+    }
+  }, [navigate]);
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminAuth");
+    toast.success("Sesión cerrada exitosamente");
+    navigate("/admin-login");
+  };
 
   return (
     <div className="min-h-screen bg-secondary/20">
@@ -25,6 +40,10 @@ const Admin = () => {
               </Link>
               <h1 className="text-2xl font-bold text-foreground">Panel Administrativo</h1>
             </div>
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              <LogOut className="mr-2 h-4 w-4" />
+              Cerrar Sesión
+            </Button>
           </div>
         </div>
       </div>
