@@ -9,6 +9,7 @@ import { toast } from "sonner";
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     nombres: "",
+    universidad: "",
     telefono: "",
     correo: "",
     cedulaRuc: "",
@@ -19,7 +20,7 @@ const ContactForm = () => {
     e.preventDefault();
     
     // Validación básica
-    if (!formData.nombres || !formData.correo || !formData.motivo) {
+    if (!formData.nombres || !formData.universidad || !formData.correo || !formData.motivo) {
       toast.error("Por favor completa los campos requeridos");
       return;
     }
@@ -27,6 +28,7 @@ const ContactForm = () => {
     toast.success("Solicitud enviada exitosamente. Nos pondremos en contacto pronto.");
     setFormData({
       nombres: "",
+      universidad: "",
       telefono: "",
       correo: "",
       cedulaRuc: "",
@@ -62,6 +64,17 @@ const ContactForm = () => {
                   value={formData.nombres}
                   onChange={(e) => setFormData({...formData, nombres: e.target.value})}
                   placeholder="Juan Pérez García"
+                  required
+                />
+              </div>
+
+              <div>
+                <Label htmlFor="universidad">Nombre de la Universidad *</Label>
+                <Input
+                  id="universidad"
+                  value={formData.universidad}
+                  onChange={(e) => setFormData({...formData, universidad: e.target.value})}
+                  placeholder="Universidad Central del Ecuador"
                   required
                 />
               </div>
