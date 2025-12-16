@@ -1,32 +1,30 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { GraduationCap, FileCheck, Users, TrendingUp, BadgeCheck } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import servicesBg from "@/assets/services-bg.jpg";
 
 const services = [
   {
     icon: GraduationCap,
-    title: "Evaluación inicial (diagnóstico)",
+    title: "Diagnóstico (evaluación inicial)",
     description:
-      "Levantamiento de estado real: criterios, evidencias, brechas, riesgos y prioridades. Entregamos un diagnóstico accionable.",
+      "Levantamiento de brechas, riesgos y prioridades. Entregamos un diagnóstico accionable con ruta de trabajo.",
   },
   {
     icon: FileCheck,
-    title: "Gestión de evidencias y documentación",
+    title: "Evidencias y documentación",
     description:
-      "Estructuramos repositorios, matrices, trazabilidad y narrativa técnica. Reducimos reprocesos y elevamos consistencia documental.",
+      "Matrices, trazabilidad, repositorios y consistencia narrativa. Reducimos reprocesos y aumentamos robustez documental.",
   },
   {
     icon: Users,
     title: "Capacitación y acompañamiento",
     description:
-      "Transferimos capacidades al equipo académico y administrativo: estándares, evidencias, indicadores y preparación para evaluación externa.",
+      "Transferimos capacidades: criterios, evidencias, indicadores y preparación para evaluación/validación externa.",
   },
   {
     icon: TrendingUp,
     title: "Plan de mejora y seguimiento",
     description:
-      "Roadmap, responsables, indicadores y seguimiento. Convertimos requisitos en ejecución y resultados medibles.",
+      "Roadmap, responsables, indicadores y control. Convertimos requisitos en ejecución y resultados medibles.",
   },
 ];
 
@@ -36,53 +34,49 @@ const Services = () => {
       id="servicios"
       className="py-20 px-4 bg-background relative"
       style={{
-        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), url(${servicesBg})`,
+        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url(${servicesBg})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundAttachment: "fixed",
       }}
     >
-      <div className="container mx-auto">
-        <div className="text-center max-w-3xl mx-auto mb-10">
-          <div className="flex justify-center mb-4">
-            <Badge variant="outline" className="rounded-full px-4 py-1 text-xs">
-              <BadgeCheck className="h-4 w-4 mr-1" />
-              Certificados como evaluadores
-            </Badge>
+      <div className="container mx-auto max-w-6xl">
+        <div className="max-w-3xl mx-auto text-center mb-12">
+          <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 mb-4">
+            <BadgeCheck className="h-4 w-4 text-primary" />
+            <p className="text-sm font-semibold">Equipo con evaluadoras certificadas</p>
           </div>
 
           <h2 className="text-4xl font-bold text-foreground mb-4">Nuestros servicios</h2>
           <p className="text-lg text-muted-foreground">
-            Acompañamiento integral en cada etapa del proceso: desde diagnóstico hasta seguimiento del plan de mejora.
+            Un recorrido completo, desde el diagnóstico hasta el seguimiento del plan de mejora, con enfoque técnico y ejecución práctica.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
-            <Card key={service.title} className="rounded-2xl hover:shadow-lg transition-all hover:-translate-y-0.5">
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                  <service.icon className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle className="text-xl">{service.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-sm leading-relaxed">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        <ol className="relative max-w-4xl mx-auto">
+          <div className="absolute left-5 top-0 bottom-0 w-px bg-border hidden sm:block" />
 
-        <div className="mt-10 max-w-4xl mx-auto rounded-2xl border bg-card p-6">
-          <p className="text-sm font-semibold">Qué obtienes con nuestro acompañamiento</p>
-          <ul className="mt-3 grid md:grid-cols-2 gap-2 text-sm text-muted-foreground list-disc pl-5">
-            <li>Diagnóstico con brechas priorizadas y plan de trabajo.</li>
-            <li>Matriz de evidencias con trazabilidad y consistencia.</li>
-            <li>Indicadores y seguimiento para mejora continua.</li>
-            <li>Preparación técnica para evaluación/validación externa.</li>
-          </ul>
+          {services.map((s, i) => (
+            <li key={s.title} className="relative pl-0 sm:pl-16 py-6">
+              <div className="hidden sm:flex absolute left-0 top-6 h-10 w-10 rounded-full border bg-background items-center justify-center">
+                <span className="text-sm font-semibold text-foreground">{i + 1}</span>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <div className="h-12 w-12 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <s.icon className="h-6 w-6 text-primary" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground">{s.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{s.description}</p>
+                </div>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="max-w-4xl mx-auto mt-10 border-t pt-6 text-sm text-muted-foreground">
+          La certificación de nuestras evaluadoras refuerza el rigor metodológico, la consistencia de evidencias y la preparación para escenarios de evaluación externa.
         </div>
       </div>
     </section>

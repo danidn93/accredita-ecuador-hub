@@ -7,6 +7,7 @@ import AccreditationBenefits from "@/components/AccreditationBenefits";
 import ContactForm from "@/components/ContactForm";
 import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
+import AccreditationProcess from "@/components/AccreditationProcess";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <Services />
       <AppointmentForm />
       <AboutCompany />
+      <AccreditationProcess/>
       <AccreditationBenefits />
       <ContactForm />
       <FAQ />

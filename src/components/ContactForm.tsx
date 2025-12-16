@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
-import { Mail, Phone, Building2, IdCard, Send } from "lucide-react";
+import { BadgeCheck, Clock, Shield, Send } from "lucide-react";
 
 const ContactForm = () => {
   const [sending, setSending] = useState(false);
@@ -28,18 +27,9 @@ const ContactForm = () => {
 
     setSending(true);
     try {
-      // Aquí integrarías tu envío real (email/DB/API)
       await new Promise((r) => setTimeout(r, 500));
-
       toast.success("Solicitud enviada. Te contactaremos a la brevedad.");
-      setFormData({
-        nombres: "",
-        universidad: "",
-        telefono: "",
-        correo: "",
-        cedulaRuc: "",
-        motivo: "",
-      });
+      setFormData({ nombres: "", universidad: "", telefono: "", correo: "", cedulaRuc: "", motivo: "" });
     } catch (err: any) {
       toast.error(err?.message || "No se pudo enviar la solicitud.");
     } finally {
@@ -49,131 +39,133 @@ const ContactForm = () => {
 
   return (
     <section id="contacto" className="py-20 px-4 bg-background">
-      <div className="container mx-auto max-w-2xl">
+      <div className="container mx-auto max-w-6xl">
         <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-foreground mb-4">Solicita Información</h2>
-          <p className="text-lg text-muted-foreground">
-            Cuéntanos tu necesidad y te proponemos un plan de trabajo alineado a tus criterios, evidencias y plazos.
+          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            Cuéntanos tu necesidad y te propondremos un plan de trabajo alineado a criterios, evidencias y plazos.
           </p>
         </div>
 
-        <Card className="rounded-2xl">
-          <CardHeader>
-            <CardTitle>Formulario de contacto</CardTitle>
-            <CardDescription>Los campos marcados con * son obligatorios.</CardDescription>
-          </CardHeader>
-
-          <CardContent>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="space-y-2">
-                <Label htmlFor="nombres">Nombres completos *</Label>
-                <div className="relative">
-                  <Input
-                    id="nombres"
-                    value={formData.nombres}
-                    onChange={(e) => setFormData({ ...formData, nombres: e.target.value })}
-                    placeholder="Juan Pérez García"
-                    required
-                    className="pl-10"
-                  />
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    <IdCard className="h-4 w-4" />
-                  </span>
+        {/* Borde sutil, sin “card” clásico */}
+        <div className="p-[1px] rounded-3xl bg-gradient-to-r from-primary/25 via-border to-primary/25">
+          <div className="rounded-3xl bg-background">
+            <div className="grid lg:grid-cols-5 gap-0">
+              {/* Columna de contexto */}
+              <div className="lg:col-span-2 p-8 border-b lg:border-b-0 lg:border-r bg-secondary/20 rounded-t-3xl lg:rounded-l-3xl lg:rounded-tr-none">
+                <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2">
+                  <BadgeCheck className="h-4 w-4 text-primary" />
+                  <p className="text-sm font-semibold">Evaluadoras certificadas</p>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="universidad">Nombre de la institución *</Label>
-                <div className="relative">
-                  <Input
-                    id="universidad"
-                    value={formData.universidad}
-                    onChange={(e) => setFormData({ ...formData, universidad: e.target.value })}
-                    placeholder="Universidad / Instituto / Escuela"
-                    required
-                    className="pl-10"
-                  />
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    <Building2 className="h-4 w-4" />
-                  </span>
-                </div>
-              </div>
+                <h3 className="text-2xl font-semibold mt-6">Atención técnica y clara</h3>
+                <p className="text-sm text-muted-foreground mt-2 leading-relaxed">
+                  Analizamos tu contexto, el estado de evidencias y la ruta de mejora. La certificación de nuestras evaluadoras
+                  aporta rigor en criterios, consistencia documental y preparación para evaluación externa.
+                </p>
 
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label htmlFor="telefono">Teléfono</Label>
-                  <div className="relative">
-                    <Input
-                      id="telefono"
-                      type="tel"
-                      value={formData.telefono}
-                      onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
-                      placeholder="0999123456"
-                      className="pl-10"
-                    />
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                      <Phone className="h-4 w-4" />
-                    </span>
+                <div className="mt-6 space-y-3 text-sm">
+                  <div className="flex items-start gap-2">
+                    <Clock className="h-4 w-4 text-primary mt-0.5" />
+                    <p className="text-muted-foreground">
+                      Tiempo de respuesta estimado: <span className="font-medium text-foreground">24–48 horas laborables</span>.
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-2">
+                    <Shield className="h-4 w-4 text-primary mt-0.5" />
+                    <p className="text-muted-foreground">
+                      Tratamiento de datos: uso exclusivo para contacto y gestión de tu solicitud.
+                    </p>
                   </div>
                 </div>
-
-                <div className="space-y-2">
-                  <Label htmlFor="cedulaRuc">Cédula o RUC</Label>
-                  <Input
-                    id="cedulaRuc"
-                    value={formData.cedulaRuc}
-                    onChange={(e) => setFormData({ ...formData, cedulaRuc: e.target.value })}
-                    placeholder="1234567890"
-                  />
-                </div>
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="correo">Correo electrónico *</Label>
-                <div className="relative">
-                  <Input
-                    id="correo"
-                    type="email"
-                    value={formData.correo}
-                    onChange={(e) => setFormData({ ...formData, correo: e.target.value })}
-                    placeholder="nombre@correo.com"
-                    required
-                    className="pl-10"
-                  />
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    <Mail className="h-4 w-4" />
-                  </span>
-                </div>
-              </div>
+              {/* Formulario */}
+              <div className="lg:col-span-3 p-8">
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="nombres">Nombres completos *</Label>
+                      <Input
+                        id="nombres"
+                        value={formData.nombres}
+                        onChange={(e) => setFormData({ ...formData, nombres: e.target.value })}
+                        placeholder="Juan Pérez García"
+                        required
+                      />
+                    </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="motivo">Motivo de la consulta *</Label>
-                <Textarea
-                  id="motivo"
-                  value={formData.motivo}
-                  onChange={(e) => setFormData({ ...formData, motivo: e.target.value })}
-                  placeholder="Ej.: Diagnóstico inicial, preparación documental, plan de mejora, acompañamiento a visita, etc."
-                  rows={4}
-                  required
-                />
-                <p className="text-xs text-muted-foreground">
-                  Protección de datos: usaremos esta información únicamente para contactarte y atender tu solicitud.
-                </p>
-              </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="universidad">Institución *</Label>
+                      <Input
+                        id="universidad"
+                        value={formData.universidad}
+                        onChange={(e) => setFormData({ ...formData, universidad: e.target.value })}
+                        placeholder="Universidad / Instituto / Escuela"
+                        required
+                      />
+                    </div>
+                  </div>
 
-              <Button type="submit" variant="accent" size="lg" className="w-full" disabled={sending}>
-                {sending ? (
-                  "Enviando..."
-                ) : (
-                  <>
-                    <Send className="h-4 w-4 mr-2" />
-                    Enviar solicitud
-                  </>
-                )}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="correo">Correo electrónico *</Label>
+                      <Input
+                        id="correo"
+                        type="email"
+                        value={formData.correo}
+                        onChange={(e) => setFormData({ ...formData, correo: e.target.value })}
+                        placeholder="nombre@correo.com"
+                        required
+                      />
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="telefono">Teléfono</Label>
+                      <Input
+                        id="telefono"
+                        type="tel"
+                        value={formData.telefono}
+                        onChange={(e) => setFormData({ ...formData, telefono: e.target.value })}
+                        placeholder="0999123456"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="cedulaRuc">Cédula o RUC</Label>
+                    <Input
+                      id="cedulaRuc"
+                      value={formData.cedulaRuc}
+                      onChange={(e) => setFormData({ ...formData, cedulaRuc: e.target.value })}
+                      placeholder="1234567890"
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="motivo">Motivo de la consulta *</Label>
+                    <Textarea
+                      id="motivo"
+                      value={formData.motivo}
+                      onChange={(e) => setFormData({ ...formData, motivo: e.target.value })}
+                      placeholder="Ej.: diagnóstico, matriz de evidencias, plan de mejora, preparación para evaluación externa..."
+                      rows={5}
+                      required
+                    />
+                  </div>
+
+                  <Button type="submit" variant="accent" size="lg" className="w-full" disabled={sending}>
+                    {sending ? "Enviando..." : (<><Send className="h-4 w-4 mr-2" />Enviar solicitud</>)}
+                  </Button>
+
+                  <p className="text-xs text-muted-foreground">
+                    * Campos obligatorios. Al enviar, aceptas el uso de tus datos únicamente para atender esta solicitud.
+                  </p>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

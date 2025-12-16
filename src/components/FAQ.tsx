@@ -7,7 +7,6 @@ import {
 } from "@/components/ui/accordion";
 import { supabase } from "@/integrations/supabase/client";
 import { Loader2, HelpCircle } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 
 type FaqRow = {
   id: string;
@@ -19,7 +18,7 @@ type FaqRow = {
 
 const FAQ = () => {
   const [faqs, setFaqs] = useState<FaqRow[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
 
   const loadFaqs = async () => {
@@ -49,18 +48,16 @@ const FAQ = () => {
 
   return (
     <section id="faqs" className="py-20 px-4 bg-secondary/30">
-      <div className="container mx-auto max-w-3xl">
+      <div className="container mx-auto max-w-4xl">
         <div className="text-center mb-12">
-          <div className="flex justify-center mb-4">
-            <Badge variant="secondary" className="rounded-full px-4 py-1 text-xs">
-              <HelpCircle className="h-4 w-4 mr-1" />
-              Respuestas claras y directas
-            </Badge>
+          <div className="inline-flex items-center gap-2 rounded-full border bg-background/70 px-4 py-2 mb-4">
+            <HelpCircle className="h-4 w-4 text-primary" />
+            <p className="text-sm font-semibold">Respuestas claras y directas</p>
           </div>
 
           <h2 className="text-4xl font-bold text-foreground mb-4">Preguntas Frecuentes</h2>
           <p className="text-lg text-muted-foreground">
-            Si tu duda no está aquí, escríbenos desde la sección de contacto y te asesoramos.
+            Si tu pregunta no está aquí, escríbenos desde la sección de contacto.
           </p>
         </div>
 
@@ -72,26 +69,28 @@ const FAQ = () => {
         ) : errorMsg ? (
           <p className="text-center text-destructive">{errorMsg}</p>
         ) : faqs.length === 0 ? (
-          <div className="rounded-2xl border bg-card p-8 text-center">
-            <p className="text-muted-foreground">Aún no hay preguntas frecuentes publicadas.</p>
+          <div className="text-center text-muted-foreground py-8">
+            Aún no hay preguntas frecuentes publicadas.
           </div>
         ) : (
-          <Accordion type="single" collapsible className="w-full space-y-4">
-            {faqs.map((faq) => (
-              <AccordionItem
-                key={faq.id}
-                value={faq.id}
-                className="bg-card border rounded-2xl px-6"
-              >
-                <AccordionTrigger className="text-left hover:no-underline py-5">
-                  <span className="font-semibold">{faq.question}</span>
-                </AccordionTrigger>
-                <AccordionContent className="text-muted-foreground whitespace-pre-line pb-5 leading-relaxed">
-                  {faq.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
+          <div className="rounded-2xl border bg-background/70">
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq, idx) => (
+                <AccordionItem
+                  key={faq.id}
+                  value={faq.id}
+                  className={`px-6 ${idx !== 0 ? "border-t" : ""}`}
+                >
+                  <AccordionTrigger className="text-left hover:no-underline py-5">
+                    <span className="font-semibold">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground whitespace-pre-line pb-5 leading-relaxed">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </div>
         )}
       </div>
     </section>

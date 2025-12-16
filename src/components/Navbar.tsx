@@ -7,9 +7,9 @@ import logo from "@/assets/logo.png";
 
 const navItems = [
   { href: "#servicios", label: "Servicios" },
-  { href: "#agenda", label: "Agendar" },
   { href: "#contacto", label: "Contacto" },
   { href: "#faqs", label: "FAQs" },
+  { href: "#proceso", label: "Proceso" },
 ];
 
 const Navbar = () => {
