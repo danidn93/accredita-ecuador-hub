@@ -1,0 +1,8 @@
+# --- Supabase (Frontend) ---
+VITE_SUPABASE_URL="https://mdtglpyfgjcjmnvkznut.supabase.co"
+VITE_SUPABASE_ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kdGdscHlmZ2pjam1udmt6bnV0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjAzNzgwMjksImV4cCI6MjA3NTk1NDAyOX0.OQG7HedVPnOxFsh0i_eHrOL_kDIfz99dP3aTnSn8YNY"
+VITE_SUPABASE_PROJECT_ID="mdtglpyfgjcjmnvkznut"
+
+# --- App (opcionales) ---
+VITE_APP_NAME="Educalidad"
+VITE_TIMEZONE="America/Guayaquil"
