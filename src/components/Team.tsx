@@ -1,7 +1,7 @@
 import { Award, GraduationCap, Linkedin, Mail, Quote } from "lucide-react";
 const team = [
   { name:"Andrea Alejandra Cujilan Guaman", role:"Master Universitario en Dirección en la Gestión Pública", specialty:"Especialista en aseguramiento de la calidad y procesos de evaluación en educación superior.", credential:"Credencial / certificación como evaluadora o acreditadora", experience:"Agregue aquí una síntesis de su experiencia relevante en evaluación, autoevaluación, acreditación, planificación o gestión universitaria.", image:"/team/profesional-1.jpeg", email:"", linkedin:"" },
-  { name:"Vanessa Olimpia Rodriguez Flores", role:"Título profesional / título académico", specialty:"Especialista en gestión académica, evidencias, mejora continua y acompañamiento institucional.", credential:"Credencial / certificación como evaluadora o acreditadora", experience:"Agregue aquí una síntesis de su experiencia relevante y los ámbitos en los que acompaña a instituciones, carreras o programas.", image:"/team/profesional-2.jpg", email:"", linkedin:"" },
+  { name:"Vanessa Olimpia Rodriguez Flores", role:"Magister en Contabilidad y Auditoría con mención en Gestión Tributaria", specialty:"Especialista en gestión académica, evidencias, mejora continua y acompañamiento institucional.", credential:"Credencial / certificación como evaluadora o acreditadora", experience:"Agregue aquí una síntesis de su experiencia relevante y los ámbitos en los que acompaña a instituciones, carreras o programas.", image:"/team/profesional-2.jpeg", email:"", linkedin:"" },
 ];
 const Team=()=> <section id="equipo" className="scroll-mt-24 overflow-hidden bg-slate-950 px-4 py-24 text-white md:py-32">
   <div className="container mx-auto max-w-7xl">
